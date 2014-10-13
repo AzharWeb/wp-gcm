@@ -41,7 +41,9 @@ function gcm_section_callback() {
 
 function api_key_callback() {
     $options = get_option('gcm_setting');
-    ?><input type="text" name="gcm_setting[api-key]" size="39" value="<?php echo $options['api-key']; ?>" /><?php
+    ?>
+<input type="text" name="gcm_setting[api-key]" size="41" value="<?php echo $options['api-key']; ?>" />
+<?php
 }
 
 function snpi_callback(){
@@ -88,13 +90,15 @@ function px_update_notification($new_status, $old_status, $post) {
   if($options['snpi'] != false){
     if ($old_status == 'publish' && $new_status == 'publish' && 'post' == get_post_type($post)) {
 
-    $post_title = get_the_title($post);
-	   $post_url = get_permalink($post);
-    $message = __('Post updated','px_gcm')."\n";
-	   $message .= $post_title . ": " . $post_url;
+       $post_title = get_the_title($post);
+	   $post_url = get_permalink($post);	   
+	   $post_id = get_the_ID($post);
+	   $post_author = get_the_author_meta('display_name', $post->post_author);
+	   $message = $post_title . ";" . $post_url . ";". $post_id . ";" . $post_author . ";";
 
     // Send notification
-    px_sendGCM($message);
+	$up = "update";
+    px_sendGCM($message, $up);
     }
    }
 }
@@ -111,11 +115,13 @@ function px_new_notification($new_status, $old_status, $post) {
 
 	   $post_title = get_the_title($post);
 	   $post_url = get_permalink($post);
-	   $message = __('New post','px_gcm')."\n";
-	   $message .= $post_title . ": " . $post_url;
+	   $post_id = get_the_ID($post);
+	   $post_author = get_the_author_meta('display_name', $post->post_author);
+	   $message = $post_title . ";" . $post_url . ";". $post_id . ";" . $post_author . ";";
 
     // Send notification
-    px_sendGCM($message);
+	$np = "new_post";
+    px_sendGCM($message, $np);
     }
    }
 }
@@ -144,36 +150,59 @@ function px_gcm_toolbar() {
 * GCM Send Notification
 *
 */
-function px_sendGCM($message) {
-    $id = px_getIds();
-    $options = get_option('gcm_setting');
+function px_sendGCM($message, $type) {
+	$result;
+	$options = get_option('gcm_setting');
     $apiKey = $options['api-key'];
     $url = 'https://android.googleapis.com/gcm/send';
-    $fields = array(
-        'registration_ids' => $id,
-        'data' => array( "message" => $message ),);
-    $headers = array(
-    'Authorization: key=' . $apiKey,
-    'Content-Type: application/json');
+    $id = px_getIds();
+	
+	if($id >= 1000){
+		$newId = array_chunk($id, 1000);
+		foreach ($newId as $inner_id) {
+			$fields = array(
+        		'registration_ids' => $inner_id,
+        		'data' => array( $type => $message ),);
+			$headers = array(
+    			'Authorization: key=' . $apiKey,
+    			'Content-Type: application/json');
+			
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, $url );
+    		curl_setopt( $ch, CURLOPT_POST, true );
+    		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
+    		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $fields ));
+			$result = curl_exec($ch);
+		}
+	}else {
+		$fields = array(
+        	'registration_ids' => $id,
+        	'data' => array( $type => $message ),);
+		$headers = array(
+    		'Authorization: key=' . $apiKey,
+    		'Content-Type: application/json');
+		
+		$ch = curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url );
+    	curl_setopt( $ch, CURLOPT_POST, true );
+    	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
+    	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $fields ));
+		$result = curl_exec($ch);
+	}
     
-    $ch = curl_init();
-    curl_setopt( $ch, CURLOPT_URL, $url );
-    curl_setopt( $ch, CURLOPT_POST, true );
-    curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $fields ));
- 
-    $result = curl_exec($ch);
     $answer = json_decode($result);
     $cano = px_canonical($answer);
     $suc = $answer->{'success'};
     $fail = $answer->{'failure'};
 	$options = get_option('gcm_setting');
     if($options['debug'] != false){
-	$inf= "<div id='message' class='updated'><p><b>".__('Message sent.','px_gcm')."</b><i>&nbsp;&nbsp;($message)</i></p><p>$result</p></div>";
+		$inf= "<div id='message' class='updated'><p><b>".__('Message sent.','px_gcm')."</b><i>&nbsp;&nbsp;($message)</i></p><p>$result</p></div>";
 	}else{
-    $inf= "<div id='message' class='updated'><p><b>".__('Message sent.','px_gcm')."</b><i>&nbsp;&nbsp;($message)</i></p><p>".__('success:','px_gcm')." $suc  &nbsp;&nbsp;".__('fail:','px_gcm')." $fail </p></div>";
+    	$inf= "<div id='message' class='updated'><p><b>".__('Message sent.','px_gcm')."</b><i>&nbsp;&nbsp;($message)</i></p><p>".__('success:','px_gcm')." $suc  &nbsp;&nbsp;".__('fail:','px_gcm')." $fail </p></div>";
     }
 	print_r($inf);
     curl_close($ch);
@@ -224,10 +253,14 @@ function px_canonical($answer) {
    }
 
    if($err != null) {
-     $s = $wpdb->query($wpdb->prepare("DELETE FROM $px_table_name WHERE gcm_regid=%s",$err));
+	for($i=0; $i < count($err); $i++){
+		$s = $wpdb->query($wpdb->prepare("DELETE FROM $px_table_name WHERE gcm_regid=%s",$err[$i]));
+	}
    } 
    if($can != null) {
-     $r = $wpdb->query($wpdb->prepare("DELETE FROM $px_table_name WHERE gcm_regid=%s",$can));
+	for($i=0; $i < count($can); $i++){
+		$r = $wpdb->query($wpdb->prepare("DELETE FROM $px_table_name WHERE gcm_regid=%s",$can[$i]));
+	}
    }
 }
 

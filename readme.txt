@@ -1,11 +1,11 @@
 === WP GCM ===
 Contributors: pixelart-dev
 Plugin  URI: http://wordpress.org/plugins/wp-gcm
-Tags: gcm, c2d, android, google, cloud, messaging, google cloud messaging, wp gcm, wp-gcm
+Tags: gcm, c2d, android, google, cloud, messaging, google cloud messaging, wp gcm, wp-gcm,
 Donation Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2YCTDL7AFRHHG
 Requires at least: 3.5
-Tested up to: 3.9
-Stable tag: 1.2.5
+Tested up to: 4.0
+Stable tag: 1.2.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
 
@@ -32,6 +32,8 @@ Go to <http://px.hj.cx/wp/wp-admin> there's also a demo Android App to test!!
 Now there is finally a Demo Android Project available on GitHub!
 <https://github.com/Pixelartdev/GCM-Android-App/>
 Have fun with it!
+
+= Now with a documentation!! =
 
 == Installation ==
 1. Upload the folder 'wp-gcm' to the '/wp-content/plugins' directory on your server,

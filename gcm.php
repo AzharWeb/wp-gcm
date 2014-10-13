@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: GCM
+Plugin Name: WP GCM
 Plugin  URI: http://wordpress.org/plugins/wp-gcm
-Description: Google Cloud Messaging Plugin for WordPress
-Version: 1.2.5
+Description: Google Cloud Messaging Plugin for WordPress Blog Android App Product, sold at CodeCanyon. This is a special version of the WP GCM Plugin from wordpress.org made for WPBA. If you are facing any problems, try the orginal one from wordpress.org.
+Version: 1.2.6
 Author: Deniz Celebi & Pixelart
 Author URI: http://profiles.wordpress.org/pixelart-dev/
 License: GPLv3

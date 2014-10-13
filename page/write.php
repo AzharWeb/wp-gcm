@@ -54,6 +54,6 @@ function px_display_page_msg() {
 
 if(isset($_POST['message'])) {
     $message = $_POST["message"];
-    px_sendGCM($message);
+    px_sendGCM($message, "message");
 }
 ?>

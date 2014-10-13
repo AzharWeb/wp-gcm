@@ -1,6 +1,7 @@
 <?php
 
 function px_display_page_setting() {
+$plugins_url = plugins_url();
 ?>
   <div class="wrap">
         <?php screen_icon(); ?>
@@ -14,7 +15,7 @@ function px_display_page_setting() {
         </div>
         <?php } ?>
 	
-		<div id="post-body" class="metabox-holder columns-1"> 
+		<div id="post-body" class="metabox-holder columns-1">
 	
 			<div id="post-body-content">
 					<div class="postbox">
@@ -27,8 +28,10 @@ function px_display_page_setting() {
 	                              <?php submit_button(); ?>
 	                           </form>
 	                        </div>
+							<p>Check the <a target="_blank" href="<?php echo $plugins_url; ?>/wp-gcm/documentation/index.html">Documentation</a> for help!</p>
 						</div> 
 					</div>
+                    <p><i>Created with love by <a href="http://pixelartdev.com">Pixelart Web and App Development</a></i></p>
 			</div>
 		</div> 
 		<br class="clear">
