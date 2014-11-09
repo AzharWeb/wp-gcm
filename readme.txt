@@ -5,7 +5,7 @@ Tags: gcm, c2d, android, google, cloud, messaging, google cloud messaging, wp gc
 Donation Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2YCTDL7AFRHHG
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
 

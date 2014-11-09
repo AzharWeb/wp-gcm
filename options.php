@@ -204,8 +204,8 @@ function px_sendGCM($message, $type) {
 	}else{
     	$inf= "<div id='message' class='updated'><p><b>".__('Message sent.','px_gcm')."</b><i>&nbsp;&nbsp;($message)</i></p><p>".__('success:','px_gcm')." $suc  &nbsp;&nbsp;".__('fail:','px_gcm')." $fail </p></div>";
     }
-	print_r($inf);
-    curl_close($ch);
+	curl_close($ch);
+	print_r($inf);    
     return $result;
 }
 
