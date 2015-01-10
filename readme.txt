@@ -13,7 +13,9 @@ A WordPress Plugin for sending GCM messages trough the WordPress backend.
 
 == Description ==
 
-= NO SUPPORT ANYMORE FOR THIS PLUGIN!! GO TO CODECANYON FOR THE LATEST VERSION <http://codecanyon.net/item/wp-gcm/9942568?ref=PixelartDev> =
+= NO SUPPORT ANYMORE FOR THIS PLUGIN!! GO TO CODECANYON FOR THE LATEST VERSION =
+<http://codecanyon.net/item/wp-gcm/9942568?ref=PixelartDev>
+
 With this plugin you can send messages using Google Cloud Messaging to your Android Apps, when they're using GCM. 
 You just need your Api-Key!
 
