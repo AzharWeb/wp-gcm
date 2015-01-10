@@ -22,6 +22,7 @@ function px_display_page_msg() {
 			<div id="post-body-content">
 					<div class="postbox">
 					 <h3><?php _e('New Message','px_gcm'); ?></h3>
+					 <h3>Please go and buy this awesome plugin on CodeCanyon fur support and latest version. <a href="http://codecanyon.net/item/wp-gcm/9942568?ref=PixelartDev">click here</a></h3>
 						<div class="inside">
 							 <form method="post" action="#">
 							   <p><?php _e('Enter here your message','px_gcm'); ?></p>

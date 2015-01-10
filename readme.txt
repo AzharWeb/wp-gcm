@@ -4,14 +4,16 @@ Plugin  URI: http://wordpress.org/plugins/wp-gcm
 Tags: gcm, c2d, android, google, cloud, messaging, google cloud messaging, wp gcm, wp-gcm,
 Donation Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2YCTDL7AFRHHG
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 1.2.7
+Tested up to: 4.1
+Stable tag: 1.2.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
 
 A WordPress Plugin for sending GCM messages trough the WordPress backend.
 
 == Description ==
+
+= NO SUPPORT ANYMORE FOR THIS PLUGIN!! GO TO CODECANYON FOR THE LATEST VERSION <http://codecanyon.net/item/wp-gcm/9942568?ref=PixelartDev> =
 With this plugin you can send messages using Google Cloud Messaging to your Android Apps, when they're using GCM. 
 You just need your Api-Key!
 
@@ -25,15 +27,11 @@ Now the Plugin deletes Device IDs if they no longer active and it deletes also t
 And now it also deletes multiple IDs from the same device.
 So your database is cleaner!
 
-= Test the new Demo Site! =
-Go to <http://px.hj.cx/wp/wp-admin> there's also a demo Android App to test!!
 
 = Demo Android Project =
 Now there is finally a Demo Android Project available on GitHub!
-<https://github.com/Pixelartdev/GCM-Android-App/>
+<https://github.com/Pixelartdev/GCM-Android-App/> !!OUT DATED!!
 Have fun with it!
-
-= Now with a documentation!! =
 
 == Installation ==
 1. Upload the folder 'wp-gcm' to the '/wp-content/plugins' directory on your server,

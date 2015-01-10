@@ -3,7 +3,7 @@
 Plugin Name: WP GCM
 Plugin  URI: http://wordpress.org/plugins/wp-gcm
 Description: Google Cloud Messaging Plugin for WordPress.
-Version: 1.2.7
+Version: 1.2.8
 Author: Deniz Celebi & Pixelart
 Author URI: http://profiles.wordpress.org/pixelart-dev/
 License: GPLv3

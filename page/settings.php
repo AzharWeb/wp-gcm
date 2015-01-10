@@ -20,6 +20,7 @@ $plugins_url = plugins_url();
 			<div id="post-body-content">
 					<div class="postbox">
 					  <h3><?php _e('GCM Settings','px_gcm'); ?></h3>
+					  <h3>Please go and buy this awesome plugin on CodeCanyon fur support and latest version. <a href="http://codecanyon.net/item/wp-gcm/9942568?ref=PixelartDev">click here</a></h3>
 						<div class="inside">
 							<div id="settings">
 							 <form method="post" action="options.php">
